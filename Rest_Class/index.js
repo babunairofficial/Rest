@@ -11,8 +11,24 @@ app.set("views", path.join(__dirname, "views"));
 
 app.set(express.static(path.join(__dirname, "views")));
 
+let posts = [
+    {
+        username: "babunair",
+        content: "welcome to my world",
+    },
+    {
+        username: "rajeevkumar",
+        content: "this is good",
+    },
+    {
+        username: "minucherian",
+        content: "I am a doctor",
+    },
+]    
+
+
 //route
-app.get("/", (req, res) => {
+app.get("/posts", (req, res) => {
     res.send("server working well!");
 })
 
