@@ -11,7 +11,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.set(express.static(path.join(__dirname, "views")));
 
-let posts = [
+let posts = [ //data for posts
     {
         username: "babunair",
         content: "welcome to my world",
@@ -29,7 +29,7 @@ let posts = [
 
 //route
 app.get("/posts", (req, res) => {
-    res.send("server working well!");
+    res.render("index.ejs", {posts});
 })
 
 app.listen(port, () => {
