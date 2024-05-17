@@ -39,7 +39,8 @@ app.get("/posts/new", (req,res) => { //new form
 app.post("/posts", (req, res) =>{ //add post
     let {username, content} = req.body;
     posts.push({username, content});
-    res.send("post requests working");
+    // res.send("post requests working");
+    res.redirect("/posts");
 });
 
 
