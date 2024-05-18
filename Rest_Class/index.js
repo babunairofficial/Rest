@@ -4,6 +4,9 @@ const app = express();
 const port = 8080;
 const path = require("path"); //to access the folders created
 
+const { v4: uuidv4 } = require('uuid');
+
+
 app.use(express.urlencoded({extended: true}));
 
 app.set("view engine", "ejs");
@@ -13,17 +16,17 @@ app.use(express.static(path.join(__dirname, "public")));
 
 let posts = [ //data for posts
     {
-        id: "1a",
+        id: uuidv4(), // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
         username: "babunair",
         content: "welcome to my world",
     },
     {
-        id: "2b",
+        id: uuidv4(), // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
         username: "rajeevkumar",
         content: "this is good",
     },
     {
-        id: "3c",
+        id: uuidv4(), // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
         username: "minucherian",
         content: "I am a doctor",
     },
@@ -41,7 +44,8 @@ app.get("/posts/new", (req,res) => { //new form
 
 app.post("/posts", (req, res) =>{ //add post
     let {username, content} = req.body;
-    posts.push({username, content});
+    let id = uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+    posts.push({id, username, content});
     // res.send("post requests working");
     res.redirect("/posts");
 });
