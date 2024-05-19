@@ -6,8 +6,10 @@ const path = require("path"); //to access the folders created
 
 const { v4: uuidv4 } = require('uuid');
 
+// const methodOverride = require("method-override");
 
 app.use(express.urlencoded({extended: true}));
+// app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -53,8 +55,15 @@ app.post("/posts", (req, res) =>{ //add post
 app.get("/posts/:id", (req, res) =>{ //add post
     let { id } = req.params;
     console.log(id);
-    let post = posts.find((p) => id ===p.id);
+    let post = posts.find((p) => id === p.id);
     res.render("show.ejs", {post});
+});
+
+app.patch("/posts/:id", (req,res) =>{
+    let {id} = req.params;
+    console.log(id);
+    
+    res.send("good, patch request is working");
 });
 
 
